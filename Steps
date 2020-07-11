@@ -1,0 +1,20 @@
+To Do:
+
+
+
+In Progress:
+
+
+
+Done:
+
+> Abstract Sprite class as a base class which holds all position details in the space.
+> Abstract Ship class which will be extended by all ships
+> A Canon Direction which will fire bullets in direction
+> A bullet class that will know which direction to travel
+> The game engine will get all sprites and call for nextMove. Each sprite will update its positions and the game will print each sprite after a fixed time.
+
+
+
+
+
