@@ -1,6 +1,4 @@
-package org.spaceimpact.models;
-
-import org.spaceimpact.models.base.BaseFrame;
+package org.spaceimpact.models.base;
 
 public interface GameEnvironment {
     BaseFrame updateEnvironment(GameInput input);

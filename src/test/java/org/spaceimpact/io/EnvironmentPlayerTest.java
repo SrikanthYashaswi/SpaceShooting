@@ -1,9 +1,9 @@
 package org.spaceimpact.io;
 
-import org.junit.Before;
 import org.junit.Test;
-import org.spaceimpact.models.GameEnvironment;
-import org.spaceimpact.models.GameWindow;
+import org.spaceimpact.environment.EnvironmentPlayer;
+import org.spaceimpact.models.base.GameEnvironment;
+import org.spaceimpact.models.base.GameWindow;
 
 public class EnvironmentPlayerTest {
     EnvironmentPlayer environmentPlayer;

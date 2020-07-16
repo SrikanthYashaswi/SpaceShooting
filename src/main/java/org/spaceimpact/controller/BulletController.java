@@ -1,6 +1,7 @@
 package org.spaceimpact.controller;
 
-import org.spaceimpact.models.bullet.Bullet;
+import org.spaceimpact.models.base.Direction;
+import org.spaceimpact.models.base.Bullet;
 
 import java.util.List;
 
@@ -11,12 +12,20 @@ public class BulletController {
         this.xBoundary = xBoundary;
     }
 
-    public void moveBulletsInDirection(List<Bullet> bullets) {
+    public void move(List<Bullet> bullets) {
         for (Bullet bullet : bullets) {
-            if (bullet.getX() >= xBoundary ) {
-                bullet.markInactive();
-            } else {
-                bullet.move();
+            if (bullet.getTravelDirection() == Direction.LEFT) {
+                if (bullet.getX() <= 1) {
+                    bullet.markInactive();
+                } else {
+                    bullet.moveLeft();
+                }
+            } else if (bullet.getTravelDirection() == Direction.RIGHT) {
+                if (bullet.getX() >= xBoundary) {
+                    bullet.markInactive();
+                } else {
+                    bullet.moveRight();
+                }
             }
         }
     }

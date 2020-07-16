@@ -1,65 +1,35 @@
 package org.spaceimpact.environment;
 
-import org.spaceimpact.controller.BulletController;
-import org.spaceimpact.models.*;
+import org.spaceimpact.controller.ShootingShipStateController;
+import org.spaceimpact.models.Frame;
+import org.spaceimpact.models.base.GameEnvironment;
+import org.spaceimpact.models.base.GameInput;
+import org.spaceimpact.models.ShootingShipState;
 import org.spaceimpact.models.base.BaseFrame;
-import org.spaceimpact.models.base.Sprite;
-import org.spaceimpact.models.bullet.Bullet;
-import org.spaceimpact.models.bullet.PowerBullet;
-import org.spaceimpact.models.bullet.SimpleBullet;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
 
 public class ShootingShipEnvironment implements GameEnvironment {
-    SpaceShip spaceShip;
-    List<Bullet> bullets;
-    BulletController bulletController;
+    private final BaseFrame[] staticFrames;
+    private final ShootingShipState state;
+    private final ShootingShipStateController controller;
 
-    public ShootingShipEnvironment(BulletController bulletController) {
-        spaceShip = new SpaceShip(1, 1);
-        bullets = new ArrayList<>();
-        this.bulletController = bulletController;
+    public ShootingShipEnvironment(ShootingShipState state, ShootingShipStateController controller, BaseFrame... staticFrames) {
+        this.state = state;
+        this.controller = controller;
+        this.staticFrames = staticFrames;
     }
 
     @Override
     public BaseFrame updateEnvironment(GameInput input) {
-        reactTo(input);
-        bulletController.moveBulletsInDirection(bullets);
-        flushInactiveSprites();
+        this.controller.updateState(this.state, input);
+        this.state.flushInactiveSprites();
         return buildFrame();
     }
 
-    private void reactTo(GameInput input) {
-        switch (input) {
-            case Up: {
-                spaceShip.moveUp();
-                break;
-            }
-            case Down: {
-                spaceShip.moveDown();
-                break;
-            }
-            case Shoot: {
-                bullets.add(new SimpleBullet(spaceShip.getX(), spaceShip.getY(), spaceShip.getCannonDirection()));
-                break;
-            }
-            case PowerShoot: {
-                bullets.add(new PowerBullet(spaceShip.getX(), spaceShip.getY(), spaceShip.getCannonDirection()));
-                break;
-            }
-        }
-    }
-
     private BaseFrame buildFrame() {
-        Frame frame = new Frame();
-        frame.addPixel(spaceShip);
-        frame.addPixels(bullets.stream().collect(Collectors.toList()));
+        Frame frame = state.toFrame();
+        for (BaseFrame staticFrame : this.staticFrames) {
+            frame.addPixels(staticFrame.getPixels());
+        }
         return frame;
-    }
-
-    private void flushInactiveSprites() {
-        bullets.removeIf(Sprite::isInactive);
     }
 }

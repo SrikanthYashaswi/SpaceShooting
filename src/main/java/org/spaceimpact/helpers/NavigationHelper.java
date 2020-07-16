@@ -1,22 +1,25 @@
 package org.spaceimpact.helpers;
 
-import org.spaceimpact.models.GameInput;
+import org.spaceimpact.models.base.GameInput;
 import org.spaceimpact.models.base.Location;
 
 public class NavigationHelper {
 
+    private NavigationHelper() {
+    }
+
     public static Location getNext(GameInput gameInput, int x, int y) {
         switch (gameInput) {
-            case Up:
+            case UP:
                 y--;
                 break;
-            case Down:
+            case DOWN:
                 y++;
                 break;
-            case Left:
+            case LEFT:
                 x--;
                 break;
-            case Right:
+            case RIGHT:
                 x++;
                 break;
             default:

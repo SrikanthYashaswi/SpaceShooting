@@ -2,41 +2,41 @@ package org.spaceimpact.factories;
 
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
-import org.spaceimpact.models.GameInput;
+import org.spaceimpact.models.base.GameInput;
 
 public class GameInputFactory {
     public static GameInput getInput(KeyStroke keyStroke) {
         if (keyStroke == null) {
-            return GameInput.Undefined;
+            return GameInput.UNDEFINED;
         }
         KeyType inputKeyType = keyStroke.getKeyType();
         switch (inputKeyType) {
             case ArrowUp:
-                return GameInput.Up;
+                return GameInput.UP;
             case ArrowDown:
-                return GameInput.Down;
+                return GameInput.DOWN;
             case ArrowLeft:
-                return GameInput.Left;
+                return GameInput.LEFT;
             case ArrowRight:
-                return GameInput.Right;
+                return GameInput.RIGHT;
             case Character:
                 if (keyStroke.getCharacter().equals('s')) {
-                    return GameInput.Shoot;
+                    return GameInput.SHOOT;
                 }
                 if (keyStroke.getCharacter().equals('S')) {
-                    return GameInput.PowerShoot;
+                    return GameInput.POWER_SHOOT;
                 }
                 if (keyStroke.getCharacter().equals('q')) {
-                    return GameInput.Quit;
+                    return GameInput.QUIT;
                 }
                 if (keyStroke.getCharacter().equals('c')) {
-                    return GameInput.ClearScreen;
+                    return GameInput.CLEAR_SCREEN;
                 }
                 if (keyStroke.getCharacter().equals('p')) {
-                    return GameInput.Toggle;
+                    return GameInput.TOGGLE;
                 }
                 break;
         }
-        return GameInput.Undefined;
+        return GameInput.UNDEFINED;
     }
 }

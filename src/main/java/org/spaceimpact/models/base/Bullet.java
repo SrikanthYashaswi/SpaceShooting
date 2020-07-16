@@ -1,7 +1,4 @@
-package org.spaceimpact.models.bullet;
-
-import org.spaceimpact.models.Direction;
-import org.spaceimpact.models.base.Sprite;
+package org.spaceimpact.models.base;
 
 public abstract class Bullet extends Sprite {
     private Direction travelDirection;
@@ -10,8 +7,6 @@ public abstract class Bullet extends Sprite {
         super(x, y, character);
         this.travelDirection = travelDirection;
     }
-
-    public abstract void move();
 
     public Direction getTravelDirection() {
         return travelDirection;

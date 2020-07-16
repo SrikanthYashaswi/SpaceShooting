@@ -1,21 +1,18 @@
-package org.spaceimpact.io;
+package org.spaceimpact.environment;
 
-import org.spaceimpact.models.GameEnvironment;
-import org.spaceimpact.models.GameWindow;
-import org.spaceimpact.models.base.BaseFrame;
+import org.spaceimpact.models.base.GameEnvironment;
+import org.spaceimpact.models.base.GameWindow;
 
 public class EnvironmentPlayer {
-    private final int sleepTimeInMillis = 30;
+    private final int sleepTimeInMillis = 15;
     private final GameWindow gameWindow;
     private final GameEnvironment gameEnvironment;
-    private final BaseFrame[] staticFrames;
 
     private boolean shouldRun = true;
 
-    public EnvironmentPlayer(GameWindow gameWindow, GameEnvironment gameEnvironment, BaseFrame... staticFrames) {
+    public EnvironmentPlayer(GameWindow gameWindow, GameEnvironment gameEnvironment) {
         this.gameWindow = gameWindow;
         this.gameEnvironment = gameEnvironment;
-        this.staticFrames = staticFrames;
     }
 
     public void run() {
@@ -23,9 +20,6 @@ public class EnvironmentPlayer {
             var gameInput = gameWindow.getInputAsync();
             var frame = gameEnvironment.updateEnvironment(gameInput);
             gameWindow.clearScreen();
-            for (BaseFrame staticFrame : staticFrames) {
-                gameWindow.print(staticFrame);
-            }
             gameWindow.print(frame);
             gameWindow.refresh();
             sleep();

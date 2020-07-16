@@ -7,10 +7,11 @@ import com.googlecode.lanterna.screen.Screen;
 import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
-import org.spaceimpact.models.*;
 
 import org.spaceimpact.factories.GameInputFactory;
 import org.spaceimpact.models.base.BaseFrame;
+import org.spaceimpact.models.base.GameInput;
+import org.spaceimpact.models.base.GameWindow;
 import org.spaceimpact.models.base.Pixel;
 
 import java.io.IOException;
@@ -53,7 +54,7 @@ public class TerminalWindow implements GameWindow {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return GameInput.Undefined;
+        return GameInput.UNDEFINED;
     }
 
     @Override
