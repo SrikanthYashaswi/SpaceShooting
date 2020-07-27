@@ -8,25 +8,18 @@ import org.spaceimpact.models.base.GameEnvironment;
 import org.spaceimpact.models.base.BaseFrame;
 import org.spaceimpact.views.BorderFrame;
 
-public class SimpleShootingShipEnvironmentFactory implements EnvironmentFactory {
-
-    private final ConfigService configService;
-    private final ShootingShipStateFactory shootingShipStateFactory;
-    private final ShootingShipControllerFactory shootingShipControllerFactory;
-
-    public SimpleShootingShipEnvironmentFactory(ConfigService configService) {
-        this.configService = configService;
-        this.shootingShipStateFactory = new ShootingShipStateFactory(configService);
-        this.shootingShipControllerFactory = new ShootingShipControllerFactory(configService);
+public class SimpleShootingShipEnvironmentFactory {
+    private SimpleShootingShipEnvironmentFactory() {
     }
 
-    public GameEnvironment getEnvironment() {
+    public static GameEnvironment getEnvironment(ConfigService configService) {
 
-        ShootingShipStateController stateController = this.shootingShipControllerFactory.getStateController();
+        ShootingShipStateController stateController = ShootingShipControllerFactory.getStateController(configService);
 
-        ShootingShipState state = this.shootingShipStateFactory.getState();
+        ShootingShipState state = ShootingShipStateFactory.getState(configService);
 
-        BaseFrame border = new BorderFrame(0, 0, configService.getWindowWidth() - 1, configService.getWindowHeight() - 1);
+        BaseFrame border = new BorderFrame(configService.getPlayAreaXOrigin(), configService.getPlayAreaYOrigin(),
+                configService.getWindowWidth() - 1, configService.getWindowHeight() - 1);
 
         return new ShootingShipEnvironment(state, stateController, border);
     }

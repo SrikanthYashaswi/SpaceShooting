@@ -7,15 +7,11 @@ import org.spaceimpact.controller.ComputerShipController;
 import org.spaceimpact.controller.ShootingShipStateController;
 
 public class ShootingShipControllerFactory {
-
-    private final ConfigService configService;
-
-    public ShootingShipControllerFactory(ConfigService configService) {
-        this.configService = configService;
+    private ShootingShipControllerFactory() {
     }
 
-    public ShootingShipStateController getStateController() {
-        ComputerShipController computerShipController = new ComputerShipController(configService.getWindowWidth() - 2, configService.getWindowHeight() - 2);
+    public static ShootingShipStateController getStateController(ConfigService configService) {
+        ComputerShipController computerShipController = new ComputerShipController(configService);
 
         BulletController bulletController = new BulletController(configService.getWindowWidth() - 2);
 

@@ -6,16 +6,12 @@ import org.spaceimpact.models.ComputerShip;
 import org.spaceimpact.models.PlayerShip;
 
 public class ShootingShipStateFactory {
-
-    private final ConfigService configService;
-
-    public ShootingShipStateFactory(ConfigService configService) {
-        this.configService = configService;
+    private ShootingShipStateFactory() {
     }
 
-    public ShootingShipState getState() {
-        PlayerShip playerShip = new PlayerShip(1, 1);
-        ComputerShip computerShip = new ComputerShip(configService.getWindowWidth() - 2, configService.getWindowHeight() - 2);
+    public static ShootingShipState getState(ConfigService configService) {
+        PlayerShip playerShip = new PlayerShip(configService.getPlayAreaXOrigin() + 1, configService.getPlayAreaYOrigin() + 1);
+        ComputerShip computerShip = new ComputerShip(configService.getPlayAreaXBoundary() - 1, configService.getPlayAreaYOrigin() + 1);
         return new ShootingShipState(playerShip, computerShip);
     }
 }
