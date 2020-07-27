@@ -10,7 +10,7 @@ import java.util.Random;
 public class ComputerShipController {
     private final ConfigService configService;
     private int counter = 0;
-    private final int movementDelay = 10;
+    private static final int MOVEMENT_DELAY = 10;
     private Direction movingDirection = Direction.DOWN;
     private final Random rand = new Random();
 
@@ -19,7 +19,7 @@ public class ComputerShipController {
     }
 
     public void move(ShootingShipState state) {
-        if (counter++ % movementDelay != 0) {
+        if ((counter = (counter + 1) % MOVEMENT_DELAY) != 0) {
             return;
         }
         if (shouldFireBullet()) {
