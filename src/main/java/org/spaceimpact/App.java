@@ -13,7 +13,7 @@ public class App {
     }
 
     public static void startSpaceImpact() throws IOException {
-        final var configService = new ConfigService(60, 30, 0, 1, 59, 29);
+        final var configService = new ConfigService(60, 30, 0, 1);
 
         GameWindow window = new TerminalWindow(configService.getWindowWidth(), configService.getWindowHeight());
 

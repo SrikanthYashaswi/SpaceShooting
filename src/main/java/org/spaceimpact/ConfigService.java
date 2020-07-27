@@ -7,14 +7,20 @@ public class ConfigService {
     private final int playAreaYOrigin;
     private final int playAreaXBoundary;
     private final int playAreaYBoundary;
+    private final int statsOriginX;
+    private final int statsOriginY;
+    private final int computerShipMovementDelay;
 
-    public ConfigService(int windowWidth, int windowHeight, int playAreaXOrigin, int playAreaYOrigin, int playAreaXBoundary, int playAreaYBoundary) {
+    public ConfigService(int windowWidth, int windowHeight, int playAreaXOrigin, int playAreaYOrigin) {
         this.windowWidth = windowWidth;
         this.windowHeight = windowHeight;
+        this.statsOriginX = 7;
+        this.statsOriginY = 0;
         this.playAreaXOrigin = playAreaXOrigin;
         this.playAreaYOrigin = playAreaYOrigin;
-        this.playAreaXBoundary = playAreaXBoundary;
-        this.playAreaYBoundary = playAreaYBoundary;
+        this.playAreaXBoundary = windowWidth - 1;
+        this.playAreaYBoundary = windowHeight - 1;
+        this.computerShipMovementDelay = 10;
     }
 
     public int getWindowWidth() {
@@ -39,5 +45,17 @@ public class ConfigService {
 
     public int getPlayAreaYBoundary() {
         return playAreaYBoundary;
+    }
+
+    public int getStatsOriginX() {
+        return statsOriginX;
+    }
+
+    public int getStatsOriginY() {
+        return statsOriginY;
+    }
+
+    public int getComputerShipMovementDelay() {
+        return computerShipMovementDelay;
     }
 }

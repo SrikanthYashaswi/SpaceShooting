@@ -8,18 +8,17 @@ import org.spaceimpact.models.SimpleBullet;
 import java.util.Random;
 
 public class ComputerShipController {
+    private final Random rand = new Random();
     private final ConfigService configService;
     private int counter = 0;
-    private static final int MOVEMENT_DELAY = 10;
     private Direction movingDirection = Direction.DOWN;
-    private final Random rand = new Random();
 
     public ComputerShipController(ConfigService configService) {
         this.configService = configService;
     }
 
     public void move(ShootingShipState state) {
-        if ((counter = (counter + 1) % MOVEMENT_DELAY) != 0) {
+        if ((counter = (counter + 1) % configService.getComputerShipMovementDelay()) != 0) {
             return;
         }
         if (shouldFireBullet()) {

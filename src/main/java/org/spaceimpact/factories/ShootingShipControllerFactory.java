@@ -1,10 +1,7 @@
 package org.spaceimpact.factories;
 
 import org.spaceimpact.ConfigService;
-import org.spaceimpact.controller.PlayerShipController;
-import org.spaceimpact.controller.BulletController;
-import org.spaceimpact.controller.ComputerShipController;
-import org.spaceimpact.controller.ShootingShipStateController;
+import org.spaceimpact.controller.*;
 
 public class ShootingShipControllerFactory {
     private ShootingShipControllerFactory() {
@@ -17,6 +14,8 @@ public class ShootingShipControllerFactory {
 
         PlayerShipController playerShipController = new PlayerShipController();
 
-        return new ShootingShipStateController(playerShipController, computerShipController, bulletController);
+        GameStatsUpdater gameStatsUpdater = new GameStatsUpdater();
+
+        return new ShootingShipStateController(playerShipController, computerShipController, bulletController, gameStatsUpdater);
     }
 }

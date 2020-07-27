@@ -11,4 +11,8 @@ public class Pixel extends Location {
     public String getCharacter() {
         return character;
     }
+
+    public void setCharacter(String character){
+        this.character = character;
+    }
 }
