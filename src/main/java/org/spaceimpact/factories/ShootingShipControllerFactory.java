@@ -12,7 +12,7 @@ public class ShootingShipControllerFactory {
 
         BulletController bulletController = new BulletController(configService.getWindowWidth() - 2);
 
-        PlayerShipController playerShipController = new PlayerShipController();
+        PlayerShipController playerShipController = new PlayerShipController(configService);
 
         GameStatsUpdater gameStatsUpdater = new GameStatsUpdater();
 
