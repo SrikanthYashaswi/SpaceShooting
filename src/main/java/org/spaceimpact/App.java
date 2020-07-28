@@ -13,11 +13,11 @@ public class App {
     }
 
     public static void startSpaceImpact() throws IOException {
-        final var configService = new ConfigService(60, 30, 0, 1);
+        final var config = new Config(60, 30, 0, 1);
 
-        GameWindow window = new TerminalWindow(configService.getWindowWidth(), configService.getWindowHeight());
+        GameWindow window = new TerminalWindow(config.getWindowWidth(), config.getWindowHeight());
 
-        GameEnvironment environment = SimpleShootingShipEnvironmentFactory.getEnvironment(configService);
+        GameEnvironment environment = SimpleShootingShipEnvironmentFactory.getEnvironment(config);
 
         EnvironmentPlayer environmentPlayer = new EnvironmentPlayer(window, environment);
 

@@ -1,18 +1,18 @@
 package org.spaceimpact.factories;
 
-import org.spaceimpact.ConfigService;
+import org.spaceimpact.Config;
 import org.spaceimpact.controller.*;
 
 public class ShootingShipControllerFactory {
     private ShootingShipControllerFactory() {
     }
 
-    public static ShootingShipStateController getStateController(ConfigService configService) {
-        ComputerShipController computerShipController = new ComputerShipController(configService);
+    public static ShootingShipStateController getStateController(Config config) {
+        ComputerShipController computerShipController = new ComputerShipController(config);
 
-        BulletController bulletController = new BulletController(configService.getWindowWidth() - 2);
+        BulletController bulletController = new BulletController(config.getWindowWidth() - 2);
 
-        PlayerShipController playerShipController = new PlayerShipController(configService);
+        PlayerShipController playerShipController = new PlayerShipController(config);
 
         GameStatsUpdater gameStatsUpdater = new GameStatsUpdater();
 

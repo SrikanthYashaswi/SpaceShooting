@@ -1,6 +1,6 @@
 package org.spaceimpact.factories;
 
-import org.spaceimpact.ConfigService;
+import org.spaceimpact.Config;
 import org.spaceimpact.environment.ShootingShipEnvironment;
 import org.spaceimpact.models.ShootingShipState;
 import org.spaceimpact.controller.ShootingShipStateController;
@@ -12,14 +12,14 @@ public class SimpleShootingShipEnvironmentFactory {
     private SimpleShootingShipEnvironmentFactory() {
     }
 
-    public static GameEnvironment getEnvironment(ConfigService configService) {
+    public static GameEnvironment getEnvironment(Config config) {
 
-        ShootingShipStateController stateController = ShootingShipControllerFactory.getStateController(configService);
+        ShootingShipStateController stateController = ShootingShipControllerFactory.getStateController(config);
 
-        ShootingShipState state = ShootingShipStateFactory.getState(configService);
+        ShootingShipState state = ShootingShipStateFactory.getState(config);
 
-        BaseFrame border = new BorderFrame(configService.getPlayAreaXOrigin(), configService.getPlayAreaYOrigin(),
-                configService.getWindowWidth() - 1, configService.getWindowHeight() - 1);
+        BaseFrame border = new BorderFrame(config.getPlayAreaXOrigin(), config.getPlayAreaYOrigin(),
+                config.getWindowWidth() - 1, config.getWindowHeight() - 1);
 
         return new ShootingShipEnvironment(state, stateController, border);
     }

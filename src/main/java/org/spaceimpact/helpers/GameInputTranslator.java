@@ -1,10 +1,13 @@
-package org.spaceimpact.factories;
+package org.spaceimpact.helpers;
 
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
 import org.spaceimpact.models.base.GameInput;
 
-public class GameInputFactory {
+public class GameInputTranslator {
+    private GameInputTranslator() {
+    }
+
     public static GameInput getInput(KeyStroke keyStroke) {
         if (keyStroke == null) {
             return GameInput.UNDEFINED;

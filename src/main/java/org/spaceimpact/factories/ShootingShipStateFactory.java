@@ -1,6 +1,6 @@
 package org.spaceimpact.factories;
 
-import org.spaceimpact.ConfigService;
+import org.spaceimpact.Config;
 import org.spaceimpact.models.GameStats;
 import org.spaceimpact.models.ShootingShipState;
 import org.spaceimpact.models.ComputerShip;
@@ -10,10 +10,10 @@ public class ShootingShipStateFactory {
     private ShootingShipStateFactory() {
     }
 
-    public static ShootingShipState getState(ConfigService configService) {
-        PlayerShip playerShip = new PlayerShip(configService.getPlayAreaXOrigin() + 1, configService.getPlayAreaYOrigin() + 1);
-        ComputerShip computerShip = new ComputerShip(configService.getPlayAreaXBoundary() - 1, configService.getPlayAreaYOrigin() + 1);
-        GameStats stats = new GameStats(configService.getStatsOriginX(), configService.getStatsOriginY());
+    public static ShootingShipState getState(Config config) {
+        PlayerShip playerShip = new PlayerShip(config.getPlayAreaXOrigin() + 1, config.getPlayAreaYOrigin() + 1);
+        ComputerShip computerShip = new ComputerShip(config.getPlayAreaXBoundary() - 1, config.getPlayAreaYOrigin() + 1);
+        GameStats stats = new GameStats(config.getStatsOriginX(), config.getStatsOriginY());
         return new ShootingShipState(playerShip, computerShip, stats);
     }
 }

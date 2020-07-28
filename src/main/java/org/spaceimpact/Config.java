@@ -1,6 +1,6 @@
 package org.spaceimpact;
 
-public class ConfigService {
+public class Config {
     private final int windowWidth;
     private final int windowHeight;
     private final int playAreaXOrigin;
@@ -11,7 +11,7 @@ public class ConfigService {
     private final int statsOriginY;
     private final int computerShipMovementDelay;
 
-    public ConfigService(int windowWidth, int windowHeight, int playAreaXOrigin, int playAreaYOrigin) {
+    public Config(int windowWidth, int windowHeight, int playAreaXOrigin, int playAreaYOrigin) {
         this.windowWidth = windowWidth;
         this.windowHeight = windowHeight;
         this.statsOriginX = 7;

@@ -8,7 +8,7 @@ import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
 
-import org.spaceimpact.factories.GameInputFactory;
+import org.spaceimpact.helpers.GameInputTranslator;
 import org.spaceimpact.models.base.BaseFrame;
 import org.spaceimpact.models.base.GameInput;
 import org.spaceimpact.models.base.GameWindow;
@@ -50,7 +50,7 @@ public class TerminalWindow implements GameWindow {
     @Override
     public GameInput getInputAsync() {
         try {
-            return GameInputFactory.getInput(screen.pollInput());
+            return GameInputTranslator.getInput(screen.pollInput());
         } catch (IOException e) {
             e.printStackTrace();
         }
