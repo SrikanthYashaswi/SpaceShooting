@@ -1,10 +1,10 @@
 package org.spaceimpact.models.base;
 
-public abstract class Bullet extends Sprite {
+public abstract class Bullet extends Mass {
     private Direction travelDirection;
 
-    public Bullet(int x, int y, String character, Direction travelDirection) {
-        super(x, y, character);
+    public Bullet(int x, int y, String character, int power, Direction travelDirection) {
+        super(x, y, character, power);
         this.travelDirection = travelDirection;
     }
 
