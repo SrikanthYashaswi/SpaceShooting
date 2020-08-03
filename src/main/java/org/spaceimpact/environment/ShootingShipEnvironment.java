@@ -21,7 +21,6 @@ public class ShootingShipEnvironment implements GameEnvironment {
     @Override
     public BaseFrame updateEnvironment(GameInput input) {
         this.controller.updateState(this.state, input);
-        this.state.flushInactiveSprites();
         return buildFrame();
     }
 

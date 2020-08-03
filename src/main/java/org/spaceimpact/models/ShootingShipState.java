@@ -1,7 +1,6 @@
 package org.spaceimpact.models;
 
 import org.spaceimpact.models.base.Bullet;
-import org.spaceimpact.models.base.Sprite;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,6 +34,10 @@ public class ShootingShipState {
         this.bullets.add(bullet);
     }
 
+    public GameStats getStats() {
+        return stats;
+    }
+
     public Frame toFrame() {
         Frame frame = new Frame();
         frame.addPixel(playerShip);
@@ -42,13 +45,5 @@ public class ShootingShipState {
         frame.addPixel(stats);
         frame.addPixels(new ArrayList<>(bullets));
         return frame;
-    }
-
-    public void flushInactiveSprites() {
-        this.bullets.removeIf(Sprite::isInactive);
-    }
-
-    public GameStats getStats() {
-        return stats;
     }
 }
