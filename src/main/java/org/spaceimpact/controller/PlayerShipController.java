@@ -29,7 +29,7 @@ public class PlayerShipController {
                 break;
             }
             case SHOOT: {
-                state.addBullet(new SimpleBullet(ship.getX(), ship.getY(), ship.getCannonDirection()));
+                state.addBullet(new SimpleBullet(ship.getX() + 1, ship.getY(), ship.getCannonDirection()));
                 break;
             }
         }
