@@ -6,15 +6,16 @@ import org.spaceimpact.models.ShootingShipState;
 import org.spaceimpact.models.SimpleBullet;
 import org.spaceimpact.models.base.GameInput;
 
-public class PlayerShipController {
+public class PlayerShipController extends Controller<ShootingShipState> {
     private final Config config;
 
     public PlayerShipController(Config config) {
         this.config = config;
     }
-
-    public void move(ShootingShipState state, GameInput input) {
+    @Override
+    public void update(ShootingShipState state) {
         PlayerShip ship = state.getPlayerShip();
+        GameInput input = state.getUserInput();
         switch (input) {
             case UP: {
                 if (ship.getY() - 1 > config.getPlayAreaYOrigin()) {

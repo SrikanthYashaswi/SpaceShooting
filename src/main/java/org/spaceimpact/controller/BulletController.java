@@ -1,11 +1,10 @@
 package org.spaceimpact.controller;
 
-import org.spaceimpact.models.base.Direction;
+import org.spaceimpact.models.ShootingShipState;
 import org.spaceimpact.models.base.Bullet;
+import org.spaceimpact.models.base.Direction;
 
-import java.util.List;
-
-public class BulletController {
+public class BulletController extends Controller<ShootingShipState> {
     private int xBoundary;
     private Direction currentDirection;
 
@@ -14,8 +13,13 @@ public class BulletController {
         currentDirection = Direction.RIGHT;
     }
 
-    public void move(List<Bullet> bullets) {
-        for (Bullet bullet : bullets) {
+    private void toggleMovementDirection() {
+        currentDirection = currentDirection == Direction.RIGHT ? Direction.LEFT : Direction.RIGHT;
+    }
+
+    @Override
+    public void update(ShootingShipState state) {
+        for (Bullet bullet : state.getBullets()) {
             if (bullet.getTravelDirection() == Direction.LEFT && currentDirection == Direction.LEFT) {
                 if (bullet.getX() <= 1) {
                     bullet.markInactive();
@@ -31,9 +35,5 @@ public class BulletController {
             }
         }
         toggleMovementDirection();
-    }
-
-    private void toggleMovementDirection() {
-        currentDirection = currentDirection == Direction.RIGHT ? Direction.LEFT : Direction.RIGHT;
     }
 }

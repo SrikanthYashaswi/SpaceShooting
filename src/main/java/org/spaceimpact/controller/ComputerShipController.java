@@ -7,25 +7,14 @@ import org.spaceimpact.models.SimpleBullet;
 
 import java.util.Random;
 
-public class ComputerShipController {
+public class ComputerShipController extends Controller<ShootingShipState> {
     private final Random rand = new Random();
-    private final Config config;
+    protected final Config config;
     private int counter = 0;
     private Direction movingDirection = Direction.DOWN;
 
     public ComputerShipController(Config config) {
         this.config = config;
-    }
-
-    public void move(ShootingShipState state) {
-        if ((counter = (counter + 1) % config.getComputerShipMovementDelay()) != 0) {
-            return;
-        }
-        if (shouldFireBullet()) {
-            state.addBullet(new SimpleBullet(state.getComputerShip().getX(), state.getComputerShip().getY(),
-                    state.getComputerShip().getCannonDirection()));
-        }
-        moveShip(state);
     }
 
     private boolean shouldFireBullet() {
@@ -40,5 +29,17 @@ public class ComputerShipController {
             movingDirection = Direction.DOWN;
         }
         state.getComputerShip().move(movingDirection);
+    }
+
+    @Override
+    public void update(ShootingShipState state) {
+        if ((counter = (counter + 1) % config.getComputerShipMovementDelay()) != 0) {
+            return;
+        }
+        if (shouldFireBullet()) {
+            state.addBullet(new SimpleBullet(state.getComputerShip().getX(), state.getComputerShip().getY(),
+                    state.getComputerShip().getCannonDirection()));
+        }
+        moveShip(state);
     }
 }

@@ -1,4 +1,4 @@
-package org.spaceimpact.helpers;
+package org.spaceimpact.controller;
 
 import org.spaceimpact.models.ShootingShipState;
 import org.spaceimpact.models.base.Bullet;
@@ -10,14 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class CollisionDetector {
-    public void detect(ShootingShipState state) {
-        Map<String, Mass> locationMap = new HashMap<>();
-        addShip(locationMap, state.getPlayerShip());
-        addShip(locationMap, state.getComputerShip());
-        addBullets(locationMap, state.getBullets());
-    }
-
+public class CollisionDetector extends Controller<ShootingShipState> {
     private void addBullets(Map<String, Mass> locationMap, List<Bullet> bullets) {
         String locationId;
         for (Bullet bullet : bullets) {
@@ -47,5 +40,13 @@ public class CollisionDetector {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public void update(ShootingShipState state) {
+        Map<String, Mass> locationMap = new HashMap<>();
+        addShip(locationMap, state.getPlayerShip());
+        addShip(locationMap, state.getComputerShip());
+        addBullets(locationMap, state.getBullets());
     }
 }
