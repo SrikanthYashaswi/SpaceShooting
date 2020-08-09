@@ -2,27 +2,22 @@ package org.spaceimpact.factories;
 
 import org.spaceimpact.Config;
 import org.spaceimpact.controller.*;
-import org.spaceimpact.helpers.CollisionDetector;
-import org.spaceimpact.helpers.InactiveSpriteFlusher;
+import org.spaceimpact.controller.CollisionDetector;
+import org.spaceimpact.models.ShootingShipState;
 
 public class ShootingShipControllerFactory {
     private ShootingShipControllerFactory() {
     }
 
-    public static ShootingShipStateController getStateController(Config config) {
-        ComputerShipController computerShipController = new ComputerShipController(config);
-
-        BulletController bulletController = new BulletController(config.getWindowWidth() - 2);
-
-        CollisionDetector collisionDetector = new CollisionDetector();
-
-        InactiveSpriteFlusher inactiveSpriteFlusher = new InactiveSpriteFlusher();
-
-        PlayerShipController playerShipController = new PlayerShipController(config);
-
-        GameStatsUpdater gameStatsUpdater = new GameStatsUpdater();
-
-        return new ShootingShipStateController(playerShipController, computerShipController,
-                bulletController, gameStatsUpdater, collisionDetector, inactiveSpriteFlusher);
+    public static Controller<ShootingShipState> getControllerChain(Config config) {
+        return ControllerChainBuilder
+                .getInstance()
+                .setNext(new PlayerShipController(config))
+                .setNext(new ComputerShipController(config))
+                .setNext(new BulletController(config.getWindowWidth() - 2))
+                .setNext(new CollisionDetector())
+                .setNext(new GameStatsUpdater())
+                .setNext(new InactiveSpriteFlusher())
+                .buildChain();
     }
 }
