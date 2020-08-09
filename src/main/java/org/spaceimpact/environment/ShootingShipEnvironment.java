@@ -1,26 +1,27 @@
 package org.spaceimpact.environment;
 
-import org.spaceimpact.controller.ShootingShipStateController;
+import org.spaceimpact.controller.Controller;
 import org.spaceimpact.models.Frame;
-import org.spaceimpact.models.base.GameEnvironment;
-import org.spaceimpact.models.base.GameInput;
 import org.spaceimpact.models.ShootingShipState;
 import org.spaceimpact.models.base.BaseFrame;
+import org.spaceimpact.models.base.GameEnvironment;
+import org.spaceimpact.models.base.GameInput;
 
 public class ShootingShipEnvironment implements GameEnvironment {
     private final BaseFrame[] staticFrames;
     private final ShootingShipState state;
-    private final ShootingShipStateController controller;
+    private final Controller<ShootingShipState> controllerChain;
 
-    public ShootingShipEnvironment(ShootingShipState state, ShootingShipStateController controller, BaseFrame... staticFrames) {
+    public ShootingShipEnvironment(ShootingShipState state, Controller<ShootingShipState> controllerChain, BaseFrame... staticFrames) {
         this.state = state;
-        this.controller = controller;
+        this.controllerChain = controllerChain;
         this.staticFrames = staticFrames;
     }
 
     @Override
     public BaseFrame updateEnvironment(GameInput input) {
-        this.controller.updateState(this.state, input);
+        state.setUserInput(input);
+        controllerChain.execute(state);
         return buildFrame();
     }
 
