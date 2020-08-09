@@ -3,22 +3,32 @@ package org.spaceimpact.models;
 import org.spaceimpact.models.base.Pixel;
 
 public class GameStats extends Pixel {
-    private int healthPoints = 0;
+    private int playerShipHealthPoints = 0;
+    private int computerShipHealthPoints = 0;
 
     public GameStats(int x, int y) {
         super(x, y, "");
     }
 
     private String getUpdatedCharacter() {
-        return "Health: " + "♥ ".repeat(healthPoints);
+        return "Player: " +
+                "♥ ".repeat(playerShipHealthPoints) +
+                "\t" +
+                "Computer: " +
+                "♥ ".repeat(computerShipHealthPoints);
     }
 
     private void updateCharacter() {
         this.setCharacter(getUpdatedCharacter());
     }
 
-    public void setHealthPoints(int healthPoints) {
-        this.healthPoints = healthPoints;
+    public void setPlayerShipHealthPoints(int healthPoints) {
+        this.playerShipHealthPoints = healthPoints;
+        updateCharacter();
+    }
+
+    public void setComputerShipHealthPoints(int healthPoints){
+        this.computerShipHealthPoints = healthPoints;
         updateCharacter();
     }
 
