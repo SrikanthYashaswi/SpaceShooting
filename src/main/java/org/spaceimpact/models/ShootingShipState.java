@@ -1,15 +1,17 @@
 package org.spaceimpact.models;
 
 import org.spaceimpact.models.base.Bullet;
+import org.spaceimpact.models.base.GameInput;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ShootingShipState {
-    private PlayerShip playerShip;
-    private ComputerShip computerShip;
-    private List<Bullet> bullets;
-    private GameStats stats;
+public class ShootingShipState  {
+    private final PlayerShip playerShip;
+    private final ComputerShip computerShip;
+    private final List<Bullet> bullets;
+    private final GameStats stats;
+    private GameInput userInput;
 
     public ShootingShipState(PlayerShip playerShip, ComputerShip computerShip, GameStats stats) {
         this.playerShip = playerShip;
@@ -36,6 +38,14 @@ public class ShootingShipState {
 
     public GameStats getStats() {
         return stats;
+    }
+
+    public GameInput getUserInput() {
+        return userInput;
+    }
+
+    public void setUserInput(GameInput lastUserInput) {
+        this.userInput = lastUserInput;
     }
 
     public Frame toFrame() {
