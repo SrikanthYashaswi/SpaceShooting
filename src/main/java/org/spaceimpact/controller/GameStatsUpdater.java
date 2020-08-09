@@ -6,6 +6,8 @@ public class GameStatsUpdater extends Controller<ShootingShipState> {
 
     @Override
     public void update(ShootingShipState state) {
-        state.getStats().setHealthPoints(state.getPlayerShip().getHealth());
+        var gameStats = state.getStats();
+        gameStats.setPlayerShipHealthPoints(state.getPlayerShip().getHealth());
+        gameStats.setComputerShipHealthPoints(state.getComputerShip().getHealth());
     }
 }
